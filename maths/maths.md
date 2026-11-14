@@ -21,3 +21,16 @@
   - Index Mismatch: Deducting from `(3, 3)` when loops run `0` to `4`. If loops are 0-indexed, deduct from `(2, 2)` or add `+1` to row and col.
   - Forgetting absolute value: Distance is always positive; always use `abs()`.
 - **Problem**: CF 263A (Beautiful Matrix)
+
+---
+
+## 3. Bubble Sort Invariance (Neighbor Swaps)
+- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you can swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps can sort ANY array in the world.
+- **The Click Insight**: You don't need to actually simulate the sorting. $k$ is your "spatula size". With $k \ge 2$ you can swap neighbors and sort anything (always YES). With $k = 1$, flipping 1 element changes nothing (stuck!), so it's YES only if already sorted.
+- **Formulas**:
+  - If $k \ge 2$: Always `"YES"`
+  - If $k == 1$: `"YES"` only if `all(a[i] <= a[i+1] for i in range(n-1))`
+- **Traps**:
+  - Overcomplicating by trying to actually simulate subarray reversals.
+  - Confusing $k$ (subarray flip limit) with the size of the whole array $n$.
+- **Problem**: CF 1903A (Halloumi Boxes)
