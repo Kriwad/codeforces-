@@ -1,0 +1,19 @@
+# C++ Binaries & Object Files
+*.exe
+*.out
+*.o
+*.obj
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Competitive Programming I/O Scratch Files (optional)
+# input.txt
+# output.txt
