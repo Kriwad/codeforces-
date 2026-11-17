@@ -61,3 +61,15 @@
 - **Traps**:
   - Simulating neighbor lookups instead of binary condition matching.
 - **Problem**: CF 1900A (Cover in Water)
+
+---
+
+## 6. Modular Game Symmetries (Immediate Win vs Symmetric Stall)
+- **Core Intuition**: In turn-based games where players add or subtract 1 to reach a target multiple, check if the first player is already adjacent to a winning target.
+- **The Click Insight**: If $n$ is not a multiple of 3, it is only 1 step away from one. Vanya wins immediately on move 1 (`First`). If $n$ is already a multiple of 3, Vanya must leave it, and Vova can mirror or undo moves to keep Vanya from winning (`Second`).
+- **Formulas**:
+  - If `n % 3 != 0`: `"First"`
+  - Else: `"Second"`
+- **Traps**:
+  - Simulating 10 turns.
+- **Problem**: CF 1899A (Game with Integers)
