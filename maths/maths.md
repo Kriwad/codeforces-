@@ -49,3 +49,15 @@
   - Forgetting to double the final stretch: there is no station at destination $x$.
   - Off-by-one errors when computing differences.
 - **Problem**: CF 1901A (Line Trip)
+
+---
+
+## 5. Infinite Generator Invariant (Classification vs Simulation)
+- **Core Intuition**: When an operation allows unlimited free actions once an activation pattern is met, do not simulate the process. Classify whether the pattern exists.
+- **The Click Insight**: Minecraft Infinite Water Source: 3 consecutive dots `...` allow 2 coins to trigger infinite free refills (answer is always 2). Without `...`, you must pay 1 coin for every single dot.
+- **Formulas**:
+  - If `"..."` in `s`: `return 2`
+  - Else: `return s.count(".")`
+- **Traps**:
+  - Simulating neighbor lookups instead of binary condition matching.
+- **Problem**: CF 1900A (Cover in Water)
