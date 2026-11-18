@@ -73,3 +73,15 @@
 - **Traps**:
   - Simulating 10 turns.
 - **Problem**: CF 1899A (Game with Integers)
+
+---
+
+## 7. Permutation Invariants & Frozen Indices (Jagged Swaps)
+- **Core Intuition**: When constrained swaps are allowed infinitely many times, find which position CAN NEVER be modified (the frozen invariant). In a permutation of $1 \dots n$, the first position must contain $1$.
+- **The Click Insight**: Swaps only occur at indices $i$ with neighbors ($i \ge 1$ in 0-indexing). Index 0 is NEVER touched. If $a[0] \neq 1$, $1$ can never reach the front, so sorting is impossible (`NO`). If $a[0] == 1$, all larger values can bubble rightwards over peaks (`YES`).
+- **Formulas**:
+  - If `a[0] == 1`: `"YES"`
+  - Else: `"NO"`
+- **Traps**:
+  - Writing complex peak-detection simulation loops instead of checking index 0 reachability.
+- **Problem**: CF 1896A (Jagged Swaps)
