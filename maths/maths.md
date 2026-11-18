@@ -25,7 +25,7 @@
 ---
 
 ## 3. Bubble Sort Invariance (Neighbor Swaps)
-- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps can sort ANY array in the world.
+- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps are sufficient to reach ANY permutation of an array.
 - **The Click Insight**: You don't need to actually simulate the sorting. $k$ is your "spatula size". With $k \ge 2$ you can swap neighbors and sort anything (always YES). With $k = 1$, flipping 1 element changes nothing (stuck!), so it's YES only if already sorted.
 - **Formulas**:
   - If $k \ge 2$: Always `"YES"`
@@ -85,3 +85,17 @@
 - **Traps**:
   - Writing complex peak-detection simulation loops instead of checking index 0 reachability.
 - **Problem**: CF 1896A (Jagged Swaps)
+
+---
+
+## 8. Alternating Parity & Pigeonhole Count Balance
+- **Core Intuition**: An array with constant adjacent sums ($a[i] + a[i+1] == k$) requires elements to repeat every two steps ($a[i] == a[i+2]$). Thus, the array must alternate between at most two distinct values: $[X, Y, X, Y, \dots]$.
+- **The Click Insight**: Seating Boys and Girls: To alternate strictly without two boys or two girls touching, either their counts are equal ($|c_1 - c_2| == 0$) or one count has at most 1 extra to cover both ends ($|c_1 - c_2| == 1$). If difference $\ge 2$, by Pigeonhole Principle two identical elements must touch.
+- **Formulas**:
+  - If `len(distinct) == 1`: `"YES"`
+  - If `len(distinct) == 2 and abs(c1 - c2) <= 1`: `"YES"`
+  - Else: `"NO"`
+- **Traps**:
+  - Checking `a[i] == a[i+2]` on the input directly without rearranging.
+  - Using dictionary keys as indices (e.g. `seen[0]`) instead of `seen.values()`.
+- **Problem**: CF 1890A (Doremy's Paint 3)
