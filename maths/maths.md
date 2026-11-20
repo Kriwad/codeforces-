@@ -112,3 +112,14 @@
 - **Traps**:
   - `sys.stdin.readline` keeps `\n`! Always use `.strip()` when reading strings.
 - **Problem**: CF 1881A (Don't Try to Count)
+
+---
+
+## 10. Extremal Principle / Minimal Subsegment Reduction
+- **Core Intuition**: When a condition must hold on "at least one contiguous subsegment", test the smallest possible valid subsegment (length 1).
+- **The Click Insight**: The 1-Element Subsegment: For $k$ to be the most frequent element, choose the subsegment $[k]$ of length 1. In $[k]$, $k$ has frequency 1 and every other number has frequency 0, so $k$ is trivially the winner. Thus, possible iff $k$ is in the array.
+- **Formulas**:
+  - `if k in a: "YES" else: "NO"`
+- **Traps**:
+  - Overcomplicating with sliding windows or hash maps when length 1 is always optimal.
+- **Problem**: CF 1878A (How Much Does Daytona Cost?)
