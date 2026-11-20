@@ -25,7 +25,7 @@
 ---
 
 ## 3. Bubble Sort Invariance (Neighbor Swaps)
-- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps are sufficient to reach ANY permutation of an array.
+- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps can sort ANY array in the world.
 - **The Click Insight**: You don't need to actually simulate the sorting. $k$ is your "spatula size". With $k \ge 2$ you can swap neighbors and sort anything (always YES). With $k = 1$, flipping 1 element changes nothing (stuck!), so it's YES only if already sorted.
 - **Formulas**:
   - If $k \ge 2$: Always `"YES"`
@@ -99,3 +99,16 @@
   - Checking `a[i] == a[i+2]` on the input directly without rearranging.
   - Using dictionary keys as indices (e.g. `seen[0]`) instead of `seen.values()`.
 - **Problem**: CF 1890A (Doremy's Paint 3)
+
+---
+
+## 9. Exponential Doubling & Bounded Search
+- **Core Intuition**: When a string doubles at each step ($x = x + x$), its length grows exponentially ($2^k$). For small limits ($n, m \le 25$), at most 5 or 6 doublings are possible before the string exceeds the target length plus overlap.
+- **The Click Insight**: In just 5 steps, 1 character grows to 32 characters, and 6 steps to 64. If $s$ does not appear within 6 doublings, it will never appear.
+- **Formulas**:
+  - Loop at most 6 times: check `if s in x`, then `x = x + x`
+  - If found: `return step`
+  - Else: `return -1`
+- **Traps**:
+  - `sys.stdin.readline` keeps `\n`! Always use `.strip()` when reading strings.
+- **Problem**: CF 1881A (Don't Try to Count)
