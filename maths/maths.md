@@ -1,8 +1,10 @@
-# CP Mathematics Reference
+# CP Mathematics Reference & Inventory
 
 ## 1. Vectors & Equilibrium (Sum Invariants)
+- **Status**: Understood / Practised
+- **Prerequisites**: 2D/3D Cartesian axes, basic vector components (x, y, z)
 - **Core Intuition**: When forces act across independent dimensions (X, Y, Z), equilibrium exists IF AND ONLY IF each dimension independently equals 0. You cannot combine axes into one scalar sum.
-- **Click Example**: 3D Tug-of-war. Pulling forward (+X) balances pulling backward (-X). But if someone pulls upward (+Z), horizontal balance won't stop you from flying up. Balance on one axis never fixes imbalance on another.
+- **Click Example**: 3D Tug-of-war: Pulling forward (+X) balances pulling backward (-X). But if someone pulls upward (+Z), horizontal balance won't stop you from flying up. Balance on one axis never fixes imbalance on another.
 - **Formula**: `sum(x) == 0 and sum(y) == 0 and sum(z) == 0`
 - **Trap**: Summing `(x + y + z)` together. Example: `(-1, 1, 0)` sums to 0, but is NOT in equilibrium.
 - **Problem**: CF 69A (Young Physicist)
@@ -10,6 +12,8 @@
 ---
 
 ## 2. Manhattan Distance & Grid Centers
+- **Status**: Understood / Practised
+- **Prerequisites**: Absolute value |x|, 1D number line distance, 0-indexing vs 1-indexing
 - **Core Intuition**: Grid movement (Up, Down, Left, Right) is orthogonal. The 2D matrix splits into two independent 1D number lines: row moves and column moves.
 - **The Click Insight**: The distance formula is simply `|current_point - target_point|`. Bringing any item to the matrix center is not a 2D puzzle—it is simply finding the middle coordinates `(mid_r, mid_c)` and deducting: `|r - mid_r| + |c - mid_c|`.
 - **Formulas**:
@@ -25,6 +29,8 @@
 ---
 
 ## 3. Bubble Sort Invariance (Neighbor Swaps)
+- **Status**: Understood / Practised
+- **Prerequisites**: Bubble sort swap mechanism, permutations, contiguous subarrays
 - **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps are sufficient to reach ANY permutation of an array.
 - **The Click Insight**: You don't need to actually simulate the sorting. $k$ is your "spatula size". With $k \ge 2$ you can swap neighbors and sort anything (always YES). With $k = 1$, flipping 1 element changes nothing (stuck!), so it's YES only if already sorted.
 - **Formulas**:
@@ -38,6 +44,8 @@
 ---
 
 ## 4. Worst-Case Bottleneck & Turnaround Distances
+- **Status**: Understood / Practised
+- **Prerequisites**: Consecutive difference array a[i] - a[i-1], finding maximums
 - **Core Intuition**: When a resource (gas tank) fully refills at discrete checkpoints, the required capacity is determined solely by the single largest gap (the bottleneck) between consecutive refills.
 - **The Click Insight**: A destination without a refill requires a round-trip stretch: from the last station to destination and back. That stretch is doubled: $2 \times (x - a[-1])$. The tank must be at least as large as the worst-case stretch on the entire road.
 - **Formulas**:
@@ -53,6 +61,8 @@
 ---
 
 ## 5. Infinite Generator Invariant (Classification vs Simulation)
+- **Status**: Understood / Practised
+- **Prerequisites**: Pattern matching, substring search ('...' in s)
 - **Core Intuition**: When an operation allows unlimited free actions once an activation pattern is met, do not simulate the process. Classify whether the pattern exists.
 - **The Click Insight**: Minecraft Infinite Water Source: 3 consecutive dots `...` allow 2 coins to trigger infinite free refills (answer is always 2). Without `...`, you must pay 1 coin for every single dot.
 - **Formulas**:
@@ -65,6 +75,8 @@
 ---
 
 ## 6. Modular Game Symmetries (Immediate Win vs Symmetric Stall)
+- **Status**: Understood / Practised
+- **Prerequisites**: Modulo operator (%), division remainder theorem n = 3q + r
 - **Core Intuition**: In turn-based games where players add or subtract 1 to reach a target multiple, check if the first player is already adjacent to a winning target.
 - **The Click Insight**: If $n$ is not a multiple of 3, it is only 1 step away from one. Vanya wins immediately on move 1 (`First`). If $n$ is already a multiple of 3, Vanya must leave it, and Vova can mirror or undo moves to keep Vanya from winning (`Second`).
 - **Formulas**:
@@ -77,6 +89,8 @@
 ---
 
 ## 7. Permutation Invariants & Frozen Indices (Jagged Swaps)
+- **Status**: Understood / Practised
+- **Prerequisites**: 0-indexed bounds, invariant tracking under constrained operations
 - **Core Intuition**: When constrained swaps are allowed infinitely many times, find which position CAN NEVER be modified (the frozen invariant). In a permutation of $1 \dots n$, the first position must contain $1$.
 - **The Click Insight**: Swaps only occur at indices $i$ with neighbors ($i \ge 1$ in 0-indexing). Index 0 is NEVER touched. If $a[0] \neq 1$, $1$ can never reach the front, so sorting is impossible (`NO`). If $a[0] == 1$, all larger values can bubble rightwards over peaks (`YES`).
 - **Formulas**:
@@ -89,6 +103,8 @@
 ---
 
 ## 8. Alternating Parity & Pigeonhole Count Balance
+- **Status**: Understood / Practised
+- **Prerequisites**: Pigeonhole principle, frequency counting / hash map
 - **Core Intuition**: An array with constant adjacent sums ($a[i] + a[i+1] == k$) requires elements to repeat every two steps ($a[i] == a[i+2]$). Thus, the array must alternate between at most two distinct values: $[X, Y, X, Y, \dots]$.
 - **The Click Insight**: Seating Boys and Girls: To alternate strictly without two boys or two girls touching, either their counts are equal ($|c_1 - c_2| == 0$) or one count has at most 1 extra to cover both ends ($|c_1 - c_2| == 1$). If difference $\ge 2$, by Pigeonhole Principle two identical elements must touch.
 - **Formulas**:
@@ -103,6 +119,8 @@
 ---
 
 ## 9. Exponential Doubling & Bounded Search
+- **Status**: Understood / Practised
+- **Prerequisites**: Powers of 2 (2^k), exponential vs linear scale
 - **Core Intuition**: When a string doubles at each step ($x = x + x$), its length grows exponentially ($2^k$). For small limits ($n, m \le 25$), at most 5 or 6 doublings are possible before the string exceeds the target length plus overlap.
 - **The Click Insight**: In just 5 steps, 1 character grows to 32 characters, and 6 steps to 64. If $s$ does not appear within 6 doublings, it will never appear.
 - **Formulas**:
@@ -116,6 +134,8 @@
 ---
 
 ## 10. Extremal Principle / Minimal Subsegment Reduction
+- **Status**: Understood / Practised
+- **Prerequisites**: Subsegment definition, mode / frequency
 - **Core Intuition**: When a condition must hold on "at least one contiguous subsegment", test the smallest possible valid subsegment (length 1).
 - **The Click Insight**: The 1-Element Subsegment: For $k$ to be the most frequent element, choose the subsegment $[k]$ of length 1. In $[k]$, $k$ has frequency 1 and every other number has frequency 0, so $k$ is trivially the winner. Thus, k is achievable if and only if $k$ exists anywhere in the array.
 - **Formulas**:
@@ -127,6 +147,8 @@
 ---
 
 ## 11. Zero-Sum Invariant (Conservation of Game Totals)
+- **Status**: Understood / Practised
+- **Prerequisites**: Symmetric binary interactions (+X and -X)
 - **Core Intuition**: In closed exchange systems where every interaction gives $+X$ to one entity and $-X$ to another, the grand total across all participants is strictly 0.
 - **The Click Insight**: Goals scored by team A are goals conceded by team B. Net efficiency change across the match is $(X - Y) + (Y - X) = 0$. Hence, the sum of all $n$ teams' efficiencies is strictly $0$. The missing team's value is simply `-sum(given)`.
 - **Formulas**:
@@ -138,6 +160,8 @@
 ---
 
 ## 12. Concentric Grid Layers & Border Distance Invariant
+- **Status**: Understood / Practised
+- **Prerequisites**: 2D grid coordinates, distance to 4 boundaries
 - **Core Intuition**: In an $N \times M$ grid, concentric layers or depth from perimeter are defined by the distance to the CLOSEST border: $\min(r, N - 1 - r, c, M - 1 - c)$.
 - **The Click Insight**: Archery Target Rings: The 4 distances to the borders for cell $(r, c)$ are top ($r$), bottom ($9 - r$), left ($c$), right ($9 - c$). Point value is $1 + \min(r, 9 - r, c, 9 - c)$ in $O(1)$ without any 2D flood fill.
 - **Formulas**:
@@ -145,3 +169,19 @@
 - **Traps**:
   - Precomputing arrays or running 2D BFS when $O(1)$ border distance gives the layer directly.
 - **Problem**: CF 1873C (Target Practice)
+
+---
+
+## 13. Zero-Product Property & Distance to Origin
+- **Status**: Understood / Practised
+- **Prerequisites**: Zero-product rule ($a \times b = 0 \iff a = 0 \text{ or } b = 0$), absolute value $|x|$ on 1D line
+- **Core Intuition**: A product of $N$ numbers is $0$ if and only if at least ONE element is $0$. To minimize $+1/-1$ steps to reach $0$, find the single element closest to $0$ (minimum absolute value).
+- **The Click Insight**: Number Line Distance: The cost to reduce $x$ to $0$ using $+1/-1$ operations is strictly $|x|$. We only need ONE number to become $0$ to zero out the entire product. Therefore, $\text{min\_ops} = \min(|x| \text{ for } x \in a)$.
+- **Formulas**:
+  - $A_1 \times A_2 \times \dots \times A_N = 0 \iff \exists i \text{ such that } A_i = 0$
+  - $\text{Cost to reduce } x \text{ to } 0 = |x|$
+  - $\text{Minimum Operations} = \min(|x| \text{ for } x \in a)$
+- **Traps**:
+  - Looking for $\min(a)$ instead of $\min(|x|)$ (e.g. $\min([-50, 3])$ is $-50$, but $3$ requires fewer steps).
+  - Using a `while` loop when $|x|$ gives the step count directly in $O(1)$.
+- **Problem**: CF 1866A (Ambitious Kid)
