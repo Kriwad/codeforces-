@@ -25,7 +25,7 @@
 ---
 
 ## 3. Bubble Sort Invariance (Neighbor Swaps)
-- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps can sort ANY array in the world.
+- **Core Intuition**: If you can reverse any subarray of length at most $k$, and $k \ge 2$, you have the power to swap ANY two adjacent elements ($k=2$). By Bubble Sort principles, adjacent swaps are sufficient to reach ANY permutation of an array.
 - **The Click Insight**: You don't need to actually simulate the sorting. $k$ is your "spatula size". With $k \ge 2$ you can swap neighbors and sort anything (always YES). With $k = 1$, flipping 1 element changes nothing (stuck!), so it's YES only if already sorted.
 - **Formulas**:
   - If $k \ge 2$: Always `"YES"`
@@ -132,5 +132,16 @@
 - **Formulas**:
   - `missing = -sum(a)`
 - **Traps**:
-  - Simulating round-robin matches or keeping win/loss tracking.
+  - Simulating tournament games or tracking wins/losses.
 - **Problem**: CF 1877A (Goals of Victory)
+
+---
+
+## 12. Concentric Grid Layers & Border Distance Invariant
+- **Core Intuition**: In an $N \times M$ grid, concentric layers or depth from perimeter are defined by the distance to the CLOSEST border: $\min(r, N - 1 - r, c, M - 1 - c)$.
+- **The Click Insight**: Archery Target Rings: The 4 distances to the borders for cell $(r, c)$ are top ($r$), bottom ($9 - r$), left ($c$), right ($9 - c$). Point value is $1 + \min(r, 9 - r, c, 9 - c)$ in $O(1)$ without any 2D flood fill.
+- **Formulas**:
+  - `points = 1 + min(r, 9 - r, c, 9 - c)`
+- **Traps**:
+  - Precomputing arrays or running 2D BFS when $O(1)$ border distance gives the layer directly.
+- **Problem**: CF 1873C (Target Practice)
