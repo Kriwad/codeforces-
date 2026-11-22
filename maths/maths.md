@@ -185,3 +185,20 @@
   - Looking for $\min(a)$ instead of $\min(|x|)$ (e.g. $\min([-50, 3])$ is $-50$, but $3$ requires fewer steps).
   - Using a `while` loop when $|x|$ gives the step count directly in $O(1)$.
 - **Problem**: CF 1866A (Ambitious Kid)
+
+---
+
+## 14. Constructive Monotonic Stepping Stones
+- **Status**: Understood / Practised
+- **Prerequisites**: Inequality comparisons ($x \le y$ vs $x > y$), sequence reconstruction
+- **Core Intuition**: When filtering elements by non-decreasing order ($a_i \ge a_{i-1}$), any downward step ($b_i < b_{i-1}$) would cause $b_i$ to be dropped. To force $b_i$ to be kept, insert a stepping-stone duplicate of $b_i$ right before it so that $b_i \ge b_i$ is satisfied.
+- **The Click Insight**: Repairing a Drop: In $b = [4, 6, 3]$, going $6 \to 3$ is a drop ($3 < 6$). Inserting an extra $3$ produces $a = [4, 6, 3, 3]$. Under the filter rule, $4$ is kept, $6 \ge 4$ is kept, the first $3 < 6$ is dropped, and the second $3 \ge 3$ is kept! The reconstructed sequence exactly matches $b$.
+- **Formulas**:
+  - Start $a = [b[0]]$
+  - For $i$ from $1$ to $\text{len}(b)-1$:
+    - If $b_i \ge b_{i-1}$: `a.append(b[i])`
+    - Else: `a.append(b[i]); a.append(b[i])`
+- **Traps**:
+  - Trying to find the original sequence uniquely instead of constructing any valid sequence within $2n$ length.
+  - Printing Python list directly `print(a)` instead of space-separated integers `print(*a)`.
+- **Problem**: CF 1862B (Sequence Game)
