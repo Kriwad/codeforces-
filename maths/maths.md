@@ -215,7 +215,7 @@
   - $c = [x \text{ for } x \in a \text{ if } x == \max(a)]$
   - $b = [x \text{ for } x \in a \text{ if } x \ne \max(a)]$
 - **Traps**:
-  - Putting only one copy of $\max(a)$ into $c$ when there are duplicates ($[2, 6, 6] \implies 6$ divides $6$).
+  - Putting only one copy of $\max(a)$ into $c$ when there are duplicates.
   - Confusing divisibility direction ($c_j \nmid b_i$).
 - **Problem**: CF 1859A (United We Stand)
 
@@ -234,3 +234,17 @@
   - Assuming players burn private moves first.
   - Summing all buttons without separating private from shared pools.
 - **Problem**: CF 1858A (Buttons)
+
+---
+
+## 17. Parity Conservation of Partitions (Sum Parity Invariant)
+- **Status**: Understood / Practised
+- **Prerequisites**: Even/odd addition rules ($\text{even}+\text{even}=\text{even}$, $\text{odd}+\text{odd}=\text{even}$, $\text{even}+\text{odd}=\text{odd}$)
+- **Core Intuition**: $\text{Total Sum} = \text{Part}_1 + \text{Part}_2$. Two partitions have the exact same parity (both even or both odd) if and only if their sum is strictly EVEN.
+- **The Click Insight**: Coloring Red and Blue: If both sub-sums are even, sum is even. If both are odd, sum is odd + odd = even. Therefore, a valid coloring exists if and only if $\text{sum}(a) \pmod 2 == 0$. If total sum is odd, it is mathematically impossible to split into two numbers of the same parity.
+- **Formulas**:
+  - If `sum(a) % 2 == 0`: `"YES"`
+  - Else: `"NO"`
+- **Traps**:
+  - Trying to simulate subset colorings with recursion/knapsack when sum parity gives the answer in $O(N)$.
+- **Problem**: CF 1857A (Array Coloring)
