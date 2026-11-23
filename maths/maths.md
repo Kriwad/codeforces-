@@ -182,7 +182,7 @@
   - $\text{Cost to reduce } x \text{ to } 0 = |x|$
   - $\text{Minimum Operations} = \min(|x| \text{ for } x \in a)$
 - **Traps**:
-  - Looking for $\min(a)$ instead of $\min(|x|)$ (e.g. $\min([-50, 3])$ is $-50$, but $3$ requires fewer steps).
+  - Looking for $\min(a)$ instead of $\min(|x|)$.
   - Using a `while` loop when $|x|$ gives the step count directly in $O(1)$.
 - **Problem**: CF 1866A (Ambitious Kid)
 
@@ -202,3 +202,35 @@
   - Trying to find the original sequence uniquely instead of constructing any valid sequence within $2n$ length.
   - Printing Python list directly `print(a)` instead of space-separated integers `print(*a)`.
 - **Problem**: CF 1862B (Sequence Game)
+
+---
+
+## 15. Strict Supremum Partition & Divisibility Invariant
+- **Status**: Understood / Practised
+- **Prerequisites**: Divisibility definition, size-order property ($y > x \implies y \nmid x$)
+- **Core Intuition**: A strictly larger positive integer can NEVER divide a strictly smaller positive integer.
+- **The Click Insight**: Isolating the Maximum: Put all copies of $\max(a)$ into array $c$, and all strictly smaller elements into array $b$. Since every element in $c$ is strictly greater than every element in $b$, no element of $c$ can ever divide any element of $b$. If $\min(a) == \max(a)$, impossible to partition $\implies -1$.
+- **Formulas**:
+  - If $\min(a) == \max(a)$: `return -1`
+  - $c = [x \text{ for } x \in a \text{ if } x == \max(a)]$
+  - $b = [x \text{ for } x \in a \text{ if } x \ne \max(a)]$
+- **Traps**:
+  - Putting only one copy of $\max(a)$ into $c$ when there are duplicates ($[2, 6, 6] \implies 6$ divides $6$).
+  - Confusing divisibility direction ($c_j \nmid b_i$).
+- **Problem**: CF 1859A (United We Stand)
+
+---
+
+## 16. Combinatorial Games & Shared Pool Parity Reduction
+- **Status**: Understood / Practised
+- **Prerequisites**: Game theory normal play convention, parity (odd vs even)
+- **Core Intuition**: When two players have private moves ($a, b$) and a shared pool of moves ($c$), optimal play exhausts the shared pool first to deny moves to the opponent.
+- **The Click Insight**: Shared Pool Tie-Breaker: Alternating through $c$ shared buttons: if $c$ is odd, First player takes the last shared button, forcing Second player to burn private moves first (First wins if $a \ge b$). If $c$ is even, Second player takes the last shared button, forcing First to burn private moves first (First wins if $a > b$).
+- **Formulas**:
+  - If $c \pmod 2 == 1$: First wins iff $a \ge b$
+  - If $c \pmod 2 == 0$: First wins iff $a > b$
+  - Equivalent 1-liner: First wins iff $a + (c \pmod 2) > b$
+- **Traps**:
+  - Assuming players burn private moves first.
+  - Summing all buttons without separating private from shared pools.
+- **Problem**: CF 1858A (Buttons)
