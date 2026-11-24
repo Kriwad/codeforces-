@@ -288,3 +288,21 @@ e 1 \implies [1] 	imes n$
   - When $n = 1$ and $x = 1$, even if $k \ge 3$, $n < 3$ so it is impossible ($	ext{NO}$).
   - Miscounting $(n - 3) // 2$ as $n - 4$.
 - **Problem**: CF 1845A (Forbidden Integer)
+
+---
+
+## 20. Modular Non-Divisibility & Consecutive Shift
+- **Status**: Understood / Practised
+- **Prerequisites**: Modular arithmetic ($x \pmod k$), properties of consecutive integers.
+- **Core Intuition**: A jump of length $L$ is forbidden if and only if $L \pmod k == 0$.
+  - If $x \pmod k \ne 0$: A single jump of length $x$ is immediately legal. Answer = 1 jump ($x$).
+  - If $x \pmod k == 0$: $x$ cannot be jumped directly. We split $x$ into two jumps: $(x - 1)$ and $1$.
+    - Since $x$ is a multiple of $k$ and $k \ge 2$, $(x - 1) \pmod k = k - 1 \ne 0$.
+    - $1 \pmod k = 1 \ne 0$.
+    - Neither jump is divisible by $k$, so exactly 2 jumps always suffice.
+- **Formulas**:
+  - If $x \pmod k \ne 0$: count = 1, jump = $[x]$
+  - Else: count = 2, jumps = $[x - 1, 1]$
+- **Traps**:
+  - Overcomplicating with simulations or loops when the upper bound on answers is always at most 2.
+- **Problem**: CF 1837A (Grasshopper on a Line)
