@@ -306,3 +306,20 @@ e 1 \implies [1] 	imes n$
 - **Traps**:
   - Overcomplicating with simulations or loops when the upper bound on answers is always at most 2.
 - **Problem**: CF 1837A (Grasshopper on a Line)
+
+---
+
+## 21. Bipolar Sum Invariant & Negative Parity Flipping
+- **Status**: Understood / Practised
+- **Prerequisites**: Sign properties of products ($(-1)^k = 1 \iff k \pmod 2 == 0$), sum of $\{-1, 1\}$ sets.
+- **Core Intuition**: An array with values exclusively in $\{-1, +1\}$ satisfies:
+  1. $\text{Sum} \ge 0 \iff \text{count}(+1) \ge \text{count}(-1)$.
+  2. $\text{Product} = 1 \iff \text{count}(-1) \pmod 2 == 0$.
+  Each flip of $-1 \to +1$ decreases $\text{count}(-1)$ by 1 and increases $\text{count}(+1)$ by 1 (sum increases by 2).
+  We greedily flip negatives until $\text{count}(+1) \ge \text{count}(-1)$. Once sum is valid, if $\text{count}(-1)$ is still odd, we make exactly 1 more flip to make the product positive (which only increases the sum further, maintaining $\text{Sum} \ge 0$).
+- **Formulas**:
+  - `while count(-1) > count(1): count(-1) -= 1; count(1) += 1; ans += 1`
+  - `if count(-1) % 2 != 0: ans += 1`
+- **Traps**:
+  - Misreading the problem condition $\text{Sum} \ge 0$ as $\text{Sum} == 0$.
+- **Problem**: CF 1834A (Unit Array)
