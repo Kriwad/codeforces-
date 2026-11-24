@@ -255,7 +255,8 @@
 - **Status**: Understood / Practised
 - **Prerequisites**: Integer division, relative speed of two converging points ($v_{rel} = 1 - (-1) = 2$), monotonicity check.
 - **Core Intuition**: An array is unsorted as soon as there exists ANY pair of adjacent elements where $a[i] > a[i+1]$. By picking an index $i$, adding 1 to $a[1 \dots i]$ and subtracting 1 from $a[i+1 \dots n]$, the gap $(a[i+1] - a[i])$ decreases by exactly 2 in each operation.
-- **The Click Insight**: To break sorted order fastest, target the adjacent pair with the minimum non-negative difference $d = a[i+1] - a[i]$. Each operation shrinks $d$ by 2. We need $a[i] > a[i+1]$, meaning $d$ must become strictly negative ($\le -1$). The number of operations needed is $\lfloor d / 2 floor + 1$. If the array is already not sorted, 0 operations are required.
+- **The Click Insight**: To break sorted order fastest, target the adjacent pair with the minimum non-negative difference $d = a[i+1] - a[i]$. Each operation shrinks $d$ by 2. We need $a[i] > a[i+1]$, meaning $d$ must become strictly negative ($\le -1$). The number of operations needed is $\lfloor d / 2 
+floor + 1$. If the array is already not sorted, 0 operations are required.
 - **Formulas**:
   - If array is already unsorted ($a[i] > a[i+1]$ for some $i$): $\text{ans} = 0$
   - Otherwise: $\text{ans} = \min_{1 \le i < n} \left( \lfloor \frac{a[i+1] - a[i]}{2} \rfloor + 1 \right)$
@@ -263,3 +264,27 @@
   - Overlooking that the array might already be unsorted initially (answer is 0).
   - Checking non-adjacent pairs: adjacent pairs always provide the tightest gap and fastest inversion.
 - **Problem**: CF 1853A (Desorting)
+
+---
+
+## 19. Additive Basis Decomposition & Small Prime Spanning
+- **Status**: Understood / Practised
+- **Prerequisites**: Parity of sums, universal generator ($1$), minimal prime basis $\{2, 3\}$.
+- **Core Intuition**: Any integer $n$ can be partitioned into $1$'s. When $1$ is banned, the minimal building blocks become $\{2, 3\}$. Any even number $n \ge 2$ can be spanned purely by $2$'s: $n = 2 	imes (n // 2)$. Any odd number $n \ge 3$ can be spanned by exactly one $3$ plus an even remainder of $2$'s: $n = 3 + 2 	imes ((n - 3) // 2)$.
+- **The Click Insight**: 
+  - If $x 
+e 1$: $1$ is available $\implies$ Always YES, $n$ copies of $1$.
+  - If $x == 1$:
+    - If $n$ is even and $k \ge 2 \implies$ YES, $n // 2$ copies of $2$.
+    - If $n$ is odd, $k \ge 3$, and $n \ge 3 \implies$ YES, one $3$ and $(n - 3) // 2$ copies of $2$.
+    - Otherwise $\implies$ NO.
+- **Formulas**:
+  - $x 
+e 1 \implies [1] 	imes n$
+  - $x == 1, n \pmod 2 == 0, k \ge 2 \implies [2] 	imes (n // 2)$
+  - $x == 1, n \pmod 2 == 1, k \ge 3, n \ge 3 \implies [3] + [2] 	imes ((n - 3) // 2)$
+  - Else $\implies 	ext{NO}$
+- **Traps**:
+  - When $n = 1$ and $x = 1$, even if $k \ge 3$, $n < 3$ so it is impossible ($	ext{NO}$).
+  - Miscounting $(n - 3) // 2$ as $n - 4$.
+- **Problem**: CF 1845A (Forbidden Integer)
