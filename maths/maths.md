@@ -357,3 +357,22 @@ e 1 \implies [1] 	imes n$
 - **Traps**:
   - Only updating `ans = max(ans, count)` inside the `else` branch (misses a trailing streak of zeros at the end of the array unless handled after the loop).
 - **Problem**: CF 1829B (Blank Space)
+
+---
+
+## 24. Linear Diophantine Parity Invariant & Even Generators
+- **Status**: Understood / Practised
+- **Prerequisites**: Linear Diophantine combinations ($2x + ky = n$), parity of sums and products.
+- **Core Intuition**: We want non-negative integers $x, y \ge 0$ such that $2x + ky = n$.
+  - Because $2x$ is unconditionally even, $2x$ spans all even non-negative integers.
+  - If $n$ is even: set $y = 0$, $x = n // 2 \implies$ **Always YES**.
+  - If $n$ is odd: $2x$ is even, so $ky$ must be odd ($	ext{even} + 	ext{odd} = 	ext{odd}$). A product $ky$ is odd if and only if both $k$ and $y$ are odd.
+    - If $k$ is even: $2x + ky$ is always even, so forming an odd $n$ is mathematically impossible $\implies$ **NO**.
+    - If $k$ is odd: we can set $y = 1$ (use one coin of value $k$). The remaining amount $(n - k)$ is $	ext{odd} - 	ext{odd} = 	ext{even} \ge 0$ (if $n \ge k$), which can be completely covered by $2$'s $\implies$ **YES**.
+- **Formulas**:
+  - `if n % 2 == 0:` $\to$ `"YES"`
+  - `elif k % 2 == 1 and n >= k:` $\to$ `"YES"`
+  - `else:` $\to$ `"NO"`
+- **Traps**:
+  - Overcomplicating with modular division (`n % k == 0`) when a single coin of value $k$ is all that is ever required to shift parity.
+- **Problem**: CF 1814A (Coins)
