@@ -340,3 +340,20 @@ e 1 \implies [1] 	imes n$
 - **Traps**:
   - Overcomplicating with sorting or greedy matching when an immediate $O(N)$ complement bijection exists.
 - **Problem**: CF 1831A (Twin Permutations)
+
+---
+
+## 23. Contiguous Run-Length Maximization (Kadane-Style Reset Invariant)
+- **Status**: Understood / Practised
+- **Prerequisites**: Linear scanning, maintaining local state (`count`) vs. global optimum (`ans`).
+- **Core Intuition**: To find the maximum length of contiguous target values (zeros):
+  - Maintain a local streak counter `count` and global maximum `ans`.
+  - When $a[i] == 0$: `count += 1` and `ans = max(ans, count)`.
+  - When $a[i] == 1$: The contiguous streak is terminated, so reset `count = 0`.
+  - Updating `ans` eagerly on each target element ensures that streaks ending at the very last index are never missed.
+- **Formulas**:
+  - `if a[i] == 0: count += 1; ans = max(ans, count)`
+  - `else: count = 0`
+- **Traps**:
+  - Only updating `ans = max(ans, count)` inside the `else` branch (misses a trailing streak of zeros at the end of the array unless handled after the loop).
+- **Problem**: CF 1829B (Blank Space)
