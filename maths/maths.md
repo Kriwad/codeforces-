@@ -323,3 +323,20 @@ e 1 \implies [1] 	imes n$
 - **Traps**:
   - Misreading the problem condition $\text{Sum} \ge 0$ as $\text{Sum} == 0$.
 - **Problem**: CF 1834A (Unit Array)
+
+---
+
+## 22. Permutation Complement Duality (Inversion Symmetry)
+- **Status**: Understood / Practised
+- **Prerequisites**: Permutation properties, bijective complement mapping ($x + (M - x) = M$).
+- **Core Intuition**: When tasked with satisfying a non-decreasing chain of sums:
+  $$a_1 + b_1 \le a_2 + b_2 \le \dots \le a_n + b_n$$
+  The strongest and cleanest construction is to make every single sum **identically equal**:
+  $$a_i + b_i = C \quad \implies \quad b_i = C - a_i$$
+  To keep $b_i \in \{1, 2, \dots, n\}$, we set $C = n + 1$. Since $a$ contains each integer from $1$ to $n$ exactly once, $b$ will also contain each integer from $1$ to $n$ exactly once.
+- **Formulas**:
+  - $b_i = (n + 1) - a_i$
+  - Each sum $a_i + b_i = n + 1$ (constant array of sums).
+- **Traps**:
+  - Overcomplicating with sorting or greedy matching when an immediate $O(N)$ complement bijection exists.
+- **Problem**: CF 1831A (Twin Permutations)
